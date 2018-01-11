@@ -1,8 +1,11 @@
 defmodule Game do
+  defstruct score: 0
+
   def roll(game, pins) do
+    %{game | score: game.score + pins}
   end
 
   def score(game) do
-    0
+    game.score
   end
 end
