@@ -3,14 +3,18 @@ defmodule GameTest do
   doctest Game
 
   test "scores a gutter game" do
-    game = Enum.reduce(1..20, %Game{}, fn(_, game) -> Game.roll(game, 0) end)
+    game = %Game{} |> roll_many(20, 0)
 
     assert Game.score(game) == 0
   end
 
   test "scores open frames" do
-    game = Enum.reduce(1..20, %Game{}, fn(_, game) -> Game.roll(game, 1) end)
+    game = %Game{} |> roll_many(20, 1)
 
     assert Game.score(game) == 20
+  end
+
+  defp roll_many(game, times, pins) do
+    Enum.reduce(1..times, game, fn(_, game) -> Game.roll(game, pins) end)
   end
 end
