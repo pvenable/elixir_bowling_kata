@@ -14,6 +14,15 @@ defmodule GameTest do
     assert Game.score(game) == 20
   end
 
+  test "scores a spare" do
+    game = %Game{}
+      |> Game.roll(1)
+      |> Game.roll(9)
+      |> roll_many(18, 1)
+
+    assert Game.score(game) == 29
+  end
+
   defp roll_many(game, times, pins) do
     Enum.reduce(1..times, game, fn(_, game) -> Game.roll(game, pins) end)
   end
