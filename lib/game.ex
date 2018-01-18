@@ -20,8 +20,10 @@ defmodule Game do
     cond do
       first == 10 ->
         10 + Enum.at(rolls, 1) + Enum.at(rolls, 2) + score_frames(count - 1, Enum.drop(rolls, 1))
+
       first + second == 10 ->
         10 + Enum.at(rolls, 2) + score_frames(count - 1, Enum.drop(rolls, 2))
+
       true ->
         first + second + score_frames(count - 1, Enum.drop(rolls, 2))
     end
